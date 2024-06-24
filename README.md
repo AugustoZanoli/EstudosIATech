@@ -15,3 +15,13 @@ porém não é tão gigante ao ponto de ser um problema para o computador ou par
 Faz uma recursão para analisar as frases.
 
 ![image](https://github.com/AugustoZanoli/EstudosIATech/assets/143662315/58e0d8ae-76fe-4b36-b90c-0f6af0de9996)
+
+------/Inicializando e treinando o tokenizer/------
+
+tokenizer.train(files=[PATH+dados_treino], vocab_size=52_000, min_frequency=2, special_tokens=[
+    "<s>", # Começo de linha
+    "<pad>",  # Esse pad é o preenchimento de valores vazios, para quando ele não preencher o vetor completo, preencher os espaços vazios e evitar problemas.
+    "</s>", # Final de frase
+    "<unk>", # Caracter desconhecido
+    "<mask>", # Local para colocar o caracter para fazer a predição
+])

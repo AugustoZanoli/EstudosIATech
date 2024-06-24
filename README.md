@@ -18,10 +18,13 @@ Faz uma recursão para analisar as frases.
 
 ------/Inicializando e treinando o tokenizer/------
 
-tokenizer.train(files=[PATH+dados_treino], vocab_size=52_000, min_frequency=2, special_tokens=[
-    "<s>", # Começo de linha
-    "<pad>",  # Esse pad é o preenchimento de valores vazios, para quando ele não preencher o vetor completo, preencher os espaços vazios e evitar problemas.
-    "</s>", # Final de frase
-    "<unk>", # Caracter desconhecido
-    "<mask>", # Local para colocar o caracter para fazer a predição
-])
+"s", # Começo de linha
+
+"pad",  # Esse pad é o preenchimento de valores vazios, para quando ele não preencher o vetor completo, preencher os espaços vazios e evitar problemas.
+
+"/s", # Final de frase
+
+"unk", # Caracter desconhecido
+
+"mask", # Local para colocar o caracter para fazer a predição
+

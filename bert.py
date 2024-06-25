@@ -57,6 +57,37 @@ dataset = LineByLineTextDataset(
 
 # Verificando
 
-print(dataset.examples[:2])
+# print(dataset.examples[:2])
 
-print(tokenizer.decode(dataset.examples[7]['input_ids']))
+# print(tokenizer.decode(dataset.examples[0]['input_ids']))
+
+# ---------------------------------- Criando o DataCollator ----------------------------------
+
+from transformers import DataCollatorForLanguageModeling
+
+data_collator = DataCollatorForLanguageModeling(
+    tokenizer=tokenizer, mlm=True,mlm_probability=0.1
+)
+
+from transformers import Trainer, TrainingArguments
+
+training_args = TrainingArguments(
+    output_dir=PATH+'RAW_MODEL',
+    overwrite_output_dir=True,
+    num_train_epochs=1200,
+    per_device_eval_batch_size=64,
+    save_steps=10_000,
+    save_total_limit=2,
+    prediction_loss_only=True,
+)
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    data_collator=data_collator,
+    train_dataset=dataset,
+)
+
+trainer.train()
+
+trainer.save_model(PATH+'RAW_MODEL')
